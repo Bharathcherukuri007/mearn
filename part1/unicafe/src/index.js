@@ -1,18 +1,33 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 function Statistics({good,bad,neutral}){
+  var average=(good *1+bad * -1+neutral *0)/(good+neutral+bad);
+  var positive=(good)/(good+neutral+bad)*100;
   
     if (good > 0 || neutral > 0 || bad > 0){
       return(
+      
+        
         <div>
-        <p >good={good}</p>
-        <p>bad={bad}</p>
-        <p>neutral={neutral}</p>
-        <p>total={good+bad+neutral}</p>
-        <p>average=good+1</p>
+           <h1>Statistics</h1>
+            <table>
+              <tbody>
+         
+          <Show a="good" b={good} />
+            <Show a="neutral" b={neutral} />
+            <Show a="bad" b={bad} />
+            <Show a="all" b={good+neutral+bad}/>
+            <Show a="average" b={average} />
+            <Show a="positive" b={ positive+"%"} />
+        
+        </tbody>
+
+        
+        </table>
         </div>
       )
      
@@ -23,12 +38,23 @@ function Statistics({good,bad,neutral}){
       return (
         <p>no feedback given</p>
       )
+    
      
 
   
   
 
 
+
+}
+function Show({a,b}){
+  return(
+    <tr>
+    <td>{a}</td>
+    <td>{b}</td>
+  </tr>
+
+  )
 
 }
 function Unicef(){
@@ -43,10 +69,12 @@ function Unicef(){
   )
   return (
     
+    
       
     
     
     <div>
+      <h1>Give feedback</h1>
       <button onClick={() => setGood(good + 1)}>good</button>
     <button onClick={() => setBad(bad + 1)}>bad</button>
     <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
@@ -65,7 +93,7 @@ function Unicef(){
 
 ReactDOM.render(
   <div>
-      <Unicef></Unicef>
+      <Unicef/>
       
 
   </div>
