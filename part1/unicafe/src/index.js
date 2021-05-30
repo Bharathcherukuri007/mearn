@@ -68,12 +68,10 @@ function Unicef(){
     0
   )
   return (
-    
-    
-      
-    
+  
     
     <div>
+      {console.log(good)}
       <h1>Give feedback</h1>
       <button onClick={() => setGood(good + 1)}>good</button>
     <button onClick={() => setBad(bad + 1)}>bad</button>
